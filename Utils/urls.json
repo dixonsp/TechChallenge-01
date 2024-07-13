@@ -1,0 +1,9 @@
+{
+    "url_apresentacao":"http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_01"
+    , "url_producao":"http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&opcao=opt_02"
+    , "url_processamento":"http://vitibrasil.cnpuv.embrapa.br/index.php?ano=2022&opcao=opt_03&subopcao=subopt_04"
+    , "url_comercializacao":"http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&opcao=opt_04"
+    , "url_importacao":"http://vitibrasil.cnpuv.embrapa.br/index.php?ano=2022&opcao=opt_05&subopcao=subopt_05"
+    , "url_exportacao":"http://vitibrasil.cnpuv.embrapa.br/index.php?ano=2022&opcao=opt_06&subopcao=subopt_04"
+    , "url_publicacao":"http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_07"
+}

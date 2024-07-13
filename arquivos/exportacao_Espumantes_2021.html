@@ -1,0 +1,1512 @@
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Na página 'Vitibrasil' são apresentadas informações referentes à quantidade de uvas processadas, produção e comercialização de vinhos, suco e derivados provenientes do Estado do Rio Grande do Sul, que representa mais de 90% da produção nacional. Também são apresentados os dados de importações e exportações dos produtos da vitivinicultura.">
+  <meta name="keywords" content="Vinhos, Espumante, Uva, Uvas passas, Suco de uva, Produção, Processamento, Comercialização, Importação, Exportação, Publicação" lang="pt-BR">
+  <meta name="author" content="Embrapa Uva e Vinho"> 
+  <link href="./figures/favicon.ico" rel="Shortcut Icon">
+  <link rel="stylesheet" type="text/css" href="vitibrasil.css">
+  <title>Banco de dados de uva, vinho e derivados</title>
+  <script type="text/javascript" defer="" async="" src="http://hotsites.cnpuv.embrapa.br/estatisticas/piwik.js"></script><script>
+    var x = screen.width;
+    window.onload = function() {  
+      var meta = document.createElement('meta');
+      meta.name = "viewport";
+      if(x < 780) {
+        var val = x/780;
+        meta.content = 'width=device-width, initial-scale=' + val;
+      }
+      else {
+        meta.content = 'width=device-width, initial-scale=1.0';
+      }
+      document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+  </script>
+  <!-- Piwik -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://hotsites.cnpuv.embrapa.br/estatisticas/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 3]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+      g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="http://hotsites.cnpuv.embrapa.br/estatisticas/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+  <!-- End Piwik Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body>
+
+
+    <table class="tb_layout" id="_top">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center" id="td_center">
+          <table class="tb_base">
+            <tbody><tr>
+              <td>
+                <p id="program_title">Dados da Vitivinicultura</p>
+              </td>
+              <td>
+                <p id="program_mail">
+                  <a href="mailto:loiva.mello@embrapa.br">Loiva Maria Ribeiro de Mello</a>
+                  <br>
+                  <a href="mailto:carlos.machado@embrapa.br">Carlos Alberto Ely Machado</a>   
+                </p> 
+              </td>   
+            </tr>
+          </tbody></table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_layout">
+      <tbody><tr>
+        <td id="tb_banner"></td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_layout no_print">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center" id="row_height">
+          <form action="index.php" method="get">
+            <p id="row_btn">
+              <button class="btn_opt" type="submit" name="opcao" value="opt_01">Apresentação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_02">Produção</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_03">Processamento</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_04">Comercialização</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_05">Importação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_06" id="btn_active">Exportação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_07">Publicação</button>
+            </p>
+          </form>
+          <script>
+            var btn = 'opt_06';
+            var item = document.querySelector('button[value=' + btn + ']');
+            item.setAttribute('id','btn_active');
+          </script>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_base">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center">
+          <div class="div_content">
+            <p class="subtitle_1">Banco de dados de uva, vinho e derivados</p>
+            <p class="subtitle_2">Exportação de derivados de uva</p>
+            
+    <table class="tb_base tb_header no_print">
+      <tbody><tr>
+        <td>
+          <form action="index.php" method="get">
+            <p>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_01">Vinhos de mesa</button><br>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_02" id="btn1_active">Espumantes</button><br>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_03">Uvas frescas</button><br>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_04">Suco de uva</button><br>
+              <input type="hidden" name="opcao" value="opt_06">
+            </p>
+          </form>
+          <script>
+            var btn1 = 'subopt_02';
+            var item1 = document.querySelector('button[value=' + btn1 + ']');
+            item1.setAttribute('id','btn1_active');
+          </script>
+        </td>
+        <td>
+          <form action="index.php">
+            <p id="p_navegano">
+              <button name="ano" type="submit" value="1970">«</button>
+              <button name="ano" type="submit" value="2020" onclick="if(this.value<1970){this.value=1970}">‹</button>
+              <button id="neutral" disabled="disabled">&nbsp;</button>
+              <button name="ano" type="submit" value="2022" onclick="if(this.value>2023){this.value=2023}">›</button>
+              <button name="ano" type="submit" value="2023">»</button>
+              <input type="hidden" name="opcao" value="opt_06">
+              <input type="hidden" name="subopcao" value="subopt_02">
+            </p>
+          </form>
+        </td>
+        <td>
+          <form action="index.php"> 
+            <p id="p_ano">
+              <label class="lbl_pesq">Ano: [1970-2023] </label> <br>
+              <input class="text_pesq" type="number" name="ano" value="" min="1970" max="2023" onkeydown="return event.keyCode !== 69" autocomplete="off" required="">&nbsp;
+              <input class="subm_pesq" type="submit" value="Ok">   
+              <input type="hidden" name="opcao" value="opt_06">
+              <input type="hidden" name="subopcao" value="subopt_02">
+            </p>
+          </form>
+        </td>
+      </tr>
+    </tbody></table>
+  
+    <div class="content_center"> 
+      <p class="text_center">Exportação de espumantes [2021] </p>
+      
+    <table class="tb_base tb_dados">
+      <thead>
+        <tr>
+          <th>Países</th>
+          <th>Quantidade (Kg)</th>
+          <th>Valor (US$)</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            África do Sul
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Alemanha
+          </td>
+             
+                  <td> 
+                    142  
+                  </td>
+                 
+                  <td> 
+                    265  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Angola
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Antigua e Barbuda
+          </td>
+             
+                  <td> 
+                    10  
+                  </td>
+                 
+                  <td> 
+                    82  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Antilhas Holandesas
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Argentina
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Aruba
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Australia
+          </td>
+             
+                  <td> 
+                    184  
+                  </td>
+                 
+                  <td> 
+                    654  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Bahamas
+          </td>
+             
+                  <td> 
+                    179  
+                  </td>
+                 
+                  <td> 
+                    461  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Bangladesh
+          </td>
+             
+                  <td> 
+                    1  
+                  </td>
+                 
+                  <td> 
+                    28  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Barbados
+          </td>
+             
+                  <td> 
+                    4  
+                  </td>
+                 
+                  <td> 
+                    58  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Belgica
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Benin
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Bermudas
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Bolívia
+          </td>
+             
+                  <td> 
+                    21.235  
+                  </td>
+                 
+                  <td> 
+                    64.988  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Bósnia-Herzegovina
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Bulgaria
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Cabo Verde
+          </td>
+             
+                  <td> 
+                    2  
+                  </td>
+                 
+                  <td> 
+                    12  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Camarões
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Canada
+          </td>
+             
+                  <td> 
+                    253  
+                  </td>
+                 
+                  <td> 
+                    566  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Catar
+          </td>
+             
+                  <td> 
+                    5  
+                  </td>
+                 
+                  <td> 
+                    964  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Cayman, Ilhas
+          </td>
+             
+                  <td> 
+                    1  
+                  </td>
+                 
+                  <td> 
+                    5  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Chile
+          </td>
+             
+                  <td> 
+                    72  
+                  </td>
+                 
+                  <td> 
+                    361  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            China
+          </td>
+             
+                  <td> 
+                    13.692  
+                  </td>
+                 
+                  <td> 
+                    49.572  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Chipre
+          </td>
+             
+                  <td> 
+                    122  
+                  </td>
+                 
+                  <td> 
+                    350  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Cingapura
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Colombia
+          </td>
+             
+                  <td> 
+                    10.280  
+                  </td>
+                 
+                  <td> 
+                    37.207  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Coreia do Sul, Republica da
+          </td>
+             
+                  <td> 
+                    82  
+                  </td>
+                 
+                  <td> 
+                    200  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Costa Rica
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Cuba
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Curaçao
+          </td>
+             
+                  <td> 
+                    5.525  
+                  </td>
+                 
+                  <td> 
+                    21.633  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Dinamarca
+          </td>
+             
+                  <td> 
+                    7  
+                  </td>
+                 
+                  <td> 
+                    32  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Dominica
+          </td>
+             
+                  <td> 
+                    204  
+                  </td>
+                 
+                  <td> 
+                    505  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            El Salvador
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Emirados Arabes Unidos
+          </td>
+             
+                  <td> 
+                    90  
+                  </td>
+                 
+                  <td> 
+                    3.240  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Equador
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Espanha
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Estados Unidos
+          </td>
+             
+                  <td> 
+                    801.082  
+                  </td>
+                 
+                  <td> 
+                    2.123.710  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Estonia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Falkland (Malvinas)
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Filipinas
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Filânldia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            França
+          </td>
+             
+                  <td> 
+                    1.015  
+                  </td>
+                 
+                  <td> 
+                    5.366  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Gana
+          </td>
+             
+                  <td> 
+                    654  
+                  </td>
+                 
+                  <td> 
+                    3.555  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Gibraltar
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Granada
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Grécia
+          </td>
+             
+                  <td> 
+                    147  
+                  </td>
+                 
+                  <td> 
+                    360  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Guatemala
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Guiana
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Guiné Equatorial
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Guiné-Bissau
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Haiti
+          </td>
+             
+                  <td> 
+                    4.978  
+                  </td>
+                 
+                  <td> 
+                    11.440  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Honduras
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Hong Kong
+          </td>
+             
+                  <td> 
+                    3.669  
+                  </td>
+                 
+                  <td> 
+                    13.135  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Hungria
+          </td>
+             
+                  <td> 
+                    96  
+                  </td>
+                 
+                  <td> 
+                    668  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Ilha de Man
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Índia
+          </td>
+             
+                  <td> 
+                    0  
+                  </td>
+                 
+                  <td> 
+                    26  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Iraque
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Irlanda
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Islândia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Itália
+          </td>
+             
+                  <td> 
+                    172  
+                  </td>
+                 
+                  <td> 
+                    879  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Japão
+          </td>
+             
+                  <td> 
+                    6.811  
+                  </td>
+                 
+                  <td> 
+                    27.860  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Jordânia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Letônia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Líbano
+          </td>
+             
+                  <td> 
+                    540  
+                  </td>
+                 
+                  <td> 
+                    1.930  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Libéria
+          </td>
+             
+                  <td> 
+                    795  
+                  </td>
+                 
+                  <td> 
+                    2.509  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Luxemburgo
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Maldivas
+          </td>
+             
+                  <td> 
+                    3.023  
+                  </td>
+                 
+                  <td> 
+                    12.327  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Malta
+          </td>
+             
+                  <td> 
+                    364  
+                  </td>
+                 
+                  <td> 
+                    2.289  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Marshall, Ilhas
+          </td>
+             
+                  <td> 
+                    1.057  
+                  </td>
+                 
+                  <td> 
+                    4.087  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Montenegro
+          </td>
+             
+                  <td> 
+                    9  
+                  </td>
+                 
+                  <td> 
+                    24  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            México
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Nicarágua
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Nigéria
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Noruega
+          </td>
+             
+                  <td> 
+                    37  
+                  </td>
+                 
+                  <td> 
+                    155  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Nova Zelândia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Países Baixos (Holanda)
+          </td>
+             
+                  <td> 
+                    86  
+                  </td>
+                 
+                  <td> 
+                    479  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Panamá
+          </td>
+             
+                  <td> 
+                    1.639  
+                  </td>
+                 
+                  <td> 
+                    4.514  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Paraguai
+          </td>
+             
+                  <td> 
+                    45.629  
+                  </td>
+                 
+                  <td> 
+                    136.909  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Peru
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Polônia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Porto Rico
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Portugal
+          </td>
+             
+                  <td> 
+                    21  
+                  </td>
+                 
+                  <td> 
+                    135  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Quênia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Reino Unido
+          </td>
+             
+                  <td> 
+                    7.130  
+                  </td>
+                 
+                  <td> 
+                    45.041  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Republica Dominicana
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Republica Tcheca
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Rússia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Serra Leoa
+          </td>
+             
+                  <td> 
+                    225  
+                  </td>
+                 
+                  <td> 
+                    1.070  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Singapura
+          </td>
+             
+                  <td> 
+                    525  
+                  </td>
+                 
+                  <td> 
+                    926  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Suécia
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Suíça
+          </td>
+             
+                  <td> 
+                    1.074  
+                  </td>
+                 
+                  <td> 
+                    4.739  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Suriname
+          </td>
+             
+                  <td> 
+                    880  
+                  </td>
+                 
+                  <td> 
+                    4.202  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Tailândia
+          </td>
+             
+                  <td> 
+                    22  
+                  </td>
+                 
+                  <td> 
+                    142  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Taiwan (Formosa)
+          </td>
+             
+                  <td> 
+                    1.255  
+                  </td>
+                 
+                  <td> 
+                    5.578  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Tcheca, República
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Trinidade e Tobago
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Turquia
+          </td>
+             
+                  <td> 
+                    74  
+                  </td>
+                 
+                  <td> 
+                    258  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Uruguai
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Vanuatu
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Venezuela
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Vietnã
+          </td>
+             
+                  <td> 
+                    144  
+                  </td>
+                 
+                  <td> 
+                    374  
+                  </td>
+                
+        </tr>
+        
+        <tr>
+          <td>
+            Outros(1)
+          </td>
+            
+                  <td>-</td>
+                  <td>-</td>
+                
+        </tr>
+         
+      </tbody> 
+      <tfoot class="tb_total">
+        <tr>
+          <td>
+            Total
+          </td>
+          <td>
+            935.243
+          </td>
+          <td>
+            2.595.870
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+   
+    <div class="tb_font">
+      Fonte: CACEX e DECEX/C.T.I.C. <br> Elaboração: Loiva Maria Ribeiro de Mello - EMBRAPA/CNPUV <br>  
+    </div>
+  
+    <table class="tb_base tb_link no_print">
+      <tbody><tr>
+        <td>
+          <a class="footer_content" href="download/ExpEspumantes.csv" target="_blank">
+            <img src="figures/download.png" alt="" width="16" height="16">
+            <span class="spn_small">DOWNLOAD</span>
+          </a>
+        </td>
+        <td class="footer_right">
+          <a class="footer_content" href="#_top">
+            <img src="figures/topo.png" alt="" width="16" height="16">
+            <span class="spn_small">TOPO</span>
+          </a>
+        </td>
+      </tr>
+    </tbody></table>
+   
+    </div>
+  
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+   
+    <table class="tb_base">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center">        
+          <table class="tb_base tb_footer">
+            <tbody><tr>
+              <td>
+                Copyright © Embrapa Uva e Vinho. Todos os direitos reservados.<br>
+                Mais informações: <a class="footer_sac" href="https://www.embrapa.br/fale-conosco/sac">https://www.embrapa.br/fale-conosco/sac</a><br>
+                Última modificação: 21/12/23       
+              </td>
+              <td class="footer_right">
+                Rua Livramento 515, Caixa Postal 130<br>
+                95700-000 Bento Gonçalves, RS - Brasil<br>
+                Fone: (54) 3455-8000 - Fax: (54) 3451-2792
+              </td>
+            </tr>
+          </tbody></table>
+        </td> 
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+
+</body></html>

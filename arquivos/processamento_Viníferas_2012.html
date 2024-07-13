@@ -1,0 +1,1759 @@
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Na página 'Vitibrasil' são apresentadas informações referentes à quantidade de uvas processadas, produção e comercialização de vinhos, suco e derivados provenientes do Estado do Rio Grande do Sul, que representa mais de 90% da produção nacional. Também são apresentados os dados de importações e exportações dos produtos da vitivinicultura.">
+  <meta name="keywords" content="Vinhos, Espumante, Uva, Uvas passas, Suco de uva, Produção, Processamento, Comercialização, Importação, Exportação, Publicação" lang="pt-BR">
+  <meta name="author" content="Embrapa Uva e Vinho"> 
+  <link href="./figures/favicon.ico" rel="Shortcut Icon">
+  <link rel="stylesheet" type="text/css" href="vitibrasil.css">
+  <title>Banco de dados de uva, vinho e derivados</title>
+  <script type="text/javascript" defer="" async="" src="http://hotsites.cnpuv.embrapa.br/estatisticas/piwik.js"></script><script>
+    var x = screen.width;
+    window.onload = function() {  
+      var meta = document.createElement('meta');
+      meta.name = "viewport";
+      if(x < 780) {
+        var val = x/780;
+        meta.content = 'width=device-width, initial-scale=' + val;
+      }
+      else {
+        meta.content = 'width=device-width, initial-scale=1.0';
+      }
+      document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+  </script>
+  <!-- Piwik -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://hotsites.cnpuv.embrapa.br/estatisticas/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 3]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+      g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="http://hotsites.cnpuv.embrapa.br/estatisticas/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+  <!-- End Piwik Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body>
+
+
+    <table class="tb_layout" id="_top">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center" id="td_center">
+          <table class="tb_base">
+            <tbody><tr>
+              <td>
+                <p id="program_title">Dados da Vitivinicultura</p>
+              </td>
+              <td>
+                <p id="program_mail">
+                  <a href="mailto:loiva.mello@embrapa.br">Loiva Maria Ribeiro de Mello</a>
+                  <br>
+                  <a href="mailto:carlos.machado@embrapa.br">Carlos Alberto Ely Machado</a>   
+                </p> 
+              </td>   
+            </tr>
+          </tbody></table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_layout">
+      <tbody><tr>
+        <td id="tb_banner"></td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_layout no_print">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center" id="row_height">
+          <form action="index.php" method="get">
+            <p id="row_btn">
+              <button class="btn_opt" type="submit" name="opcao" value="opt_01">Apresentação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_02">Produção</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_03" id="btn_active">Processamento</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_04">Comercialização</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_05">Importação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_06">Exportação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_07">Publicação</button>
+            </p>
+          </form>
+          <script>
+            var btn = 'opt_03';
+            var item = document.querySelector('button[value=' + btn + ']');
+            item.setAttribute('id','btn_active');
+          </script>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_base">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center">
+          <div class="div_content">
+            <p class="subtitle_1">Banco de dados de uva, vinho e derivados</p>
+            <p class="subtitle_2">Quantidade de uvas processadas no Rio Grande do Sul</p>
+            
+    <table class="tb_base tb_header no_print">
+      <tbody><tr>
+        <td>
+          <form action="index.php" method="get">
+            <p>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_01" id="btn1_active">Viníferas</button><br>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_02">Americanas e híbridas</button><br>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_03">Uvas de mesa</button><br>
+              <button class="btn_sopt" type="submit" name="subopcao" value="subopt_04">Sem classificação</button><br>
+              <input type="hidden" name="opcao" value="opt_03">
+            </p>
+          </form>
+          <script>
+            var btn1 = 'subopt_01';
+            var item1 = document.querySelector('button[value=' + btn1 + ']');
+            item1.setAttribute('id','btn1_active');
+          </script>
+        </td>
+        <td>
+          <form action="index.php">
+            <p id="p_navegano">
+              <button name="ano" type="submit" value="1970">«</button>
+              <button name="ano" type="submit" value="2011" onclick="if(this.value<1970){this.value=1970}">‹</button>
+              <button id="neutral" disabled="disabled">&nbsp;</button>
+              <button name="ano" type="submit" value="2013" onclick="if(this.value>2023){this.value=2023}">›</button>
+              <button name="ano" type="submit" value="2023">»</button>
+              <input type="hidden" name="opcao" value="opt_03">
+              <input type="hidden" name="subopcao" value="subopt_01">
+            </p>
+          </form>
+        </td>
+        <td>
+          <form action="index.php"> 
+            <p id="p_ano">
+              <label class="lbl_pesq">Ano: [1970-2023] </label> <br>
+              <input class="text_pesq" type="number" name="ano" value="" min="1970" max="2023" onkeydown="return event.keyCode !== 69" autocomplete="off" required="">&nbsp;
+              <input class="subm_pesq" type="submit" value="Ok">   
+              <input type="hidden" name="opcao" value="opt_03">
+              <input type="hidden" name="subopcao" value="subopt_01">
+            </p>
+          </form>
+        </td>
+      </tr>
+    </tbody></table>
+  
+    <div class="content_center"> 
+      <p class="text_center"> Uvas viníferas processadas [2012] </p>
+      
+    <table class="tb_base tb_dados">
+      <thead>
+        <tr>
+          <th>Cultivar </th>
+          <th>Quantidade (Kg) </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <tr>
+        
+              <td class="tb_item">
+                TINTAS
+              </td> 
+              <td class="tb_item">
+                39.303.313
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Alicante Bouschet
+              </td> 
+              <td class="tb_subitem">
+                2.098.824
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Ancelota
+              </td> 
+              <td class="tb_subitem">
+                1.274.677
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Aramon
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Alfrocheiro
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Arinarnoa
+              </td> 
+              <td class="tb_subitem">
+                81.026
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Aspirant Bouschet
+              </td> 
+              <td class="tb_subitem">
+                7.448
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Barbera
+              </td> 
+              <td class="tb_subitem">
+                47.549
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Bonarda
+              </td> 
+              <td class="tb_subitem">
+                1.114
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Cabernet Franc
+              </td> 
+              <td class="tb_subitem">
+                2.594.675
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Cabernet Sauvignon
+              </td> 
+              <td class="tb_subitem">
+                11.355.820
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Caladoc
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Campanario
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Canaiolo
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Carignan
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Carmenere
+              </td> 
+              <td class="tb_subitem">
+                48.990
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Castelão
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Corvina
+              </td> 
+              <td class="tb_subitem">
+                1.200
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Croatina
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Cinsaut
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Dom Felder
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Dolcetto
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Durif
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Egiodola
+              </td> 
+              <td class="tb_subitem">
+                992.241
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Ekigaina
+              </td> 
+              <td class="tb_subitem">
+                2.630
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Festival (Sugraone)
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Franconia
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Freisa
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Gamay St Romain
+              </td> 
+              <td class="tb_subitem">
+                10.995
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Gamay Beaujolais
+              </td> 
+              <td class="tb_subitem">
+                163.664
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Grand Noir
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Grenache
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Jaen
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Lagrein
+              </td> 
+              <td class="tb_subitem">
+                800
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Lambrusco
+              </td> 
+              <td class="tb_subitem">
+                52.740
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malbec
+              </td> 
+              <td class="tb_subitem">
+                629.019
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Marzemina
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Merlot
+              </td> 
+              <td class="tb_subitem">
+                9.645.204
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Marselan
+              </td> 
+              <td class="tb_subitem">
+                261.314
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Mistura de uvas viníferas tinto
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Molinera
+              </td> 
+              <td class="tb_subitem">
+                990
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Montepulciano
+              </td> 
+              <td class="tb_subitem">
+                27.678
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Bailey
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Napa Gamay
+              </td> 
+              <td class="tb_subitem">
+                86.650
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Nebbiolo
+              </td> 
+              <td class="tb_subitem">
+                37.530
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Petit Verdot
+              </td> 
+              <td class="tb_subitem">
+                102.402
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Petite Sirah
+              </td> 
+              <td class="tb_subitem">
+                149.196
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Pinotage
+              </td> 
+              <td class="tb_subitem">
+                863.296
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Pinot Noir
+              </td> 
+              <td class="tb_subitem">
+                2.799.071
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Pinot Saint George
+              </td> 
+              <td class="tb_subitem">
+                20.920
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Piriquita
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Primitivo
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Rebo
+              </td> 
+              <td class="tb_subitem">
+                16.440
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Refosco
+              </td> 
+              <td class="tb_subitem">
+                12.120
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Rondinella
+              </td> 
+              <td class="tb_subitem">
+                1.020
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Ruby Cabernet
+              </td> 
+              <td class="tb_subitem">
+                470.683
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Sangiovese
+              </td> 
+              <td class="tb_subitem">
+                280.756
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Saperavi
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Sira (falsa)
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tannat
+              </td> 
+              <td class="tb_subitem">
+                4.585.214
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tempranillo
+              </td> 
+              <td class="tb_subitem">
+                283.929
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Teroldego
+              </td> 
+              <td class="tb_subitem">
+                157.368
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Torrontes
+              </td> 
+              <td class="tb_subitem">
+                4.300
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tinta Barroca
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tinta Roriz
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Touriga Francesa
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Touriga Nacional
+              </td> 
+              <td class="tb_subitem">
+                133.820
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tinta Madeira
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tintoria
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Trincdeira
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Trousseau
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Zinfandel
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Outras1
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                BRANCAS E ROSADAS
+              </td> 
+              <td class="tb_item">
+                36.519.724
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Aliatico
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Aligote
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Altesse
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Alvarinho
+              </td> 
+              <td class="tb_subitem">
+                5.081
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Arriloba
+              </td> 
+              <td class="tb_subitem">
+                40.000
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Auxerrois
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Burger
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Chardonnay
+              </td> 
+              <td class="tb_subitem">
+                6.347.044
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Chasselas
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Chenin Blanc
+              </td> 
+              <td class="tb_subitem">
+                257.090
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Clairette(1)
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Colombard
+              </td> 
+              <td class="tb_subitem">
+                773.273
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Flora
+              </td> 
+              <td class="tb_subitem">
+                68.260
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Garganega
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Gewurztraminer
+              </td> 
+              <td class="tb_subitem">
+                327.678
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Gouveio
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Gros Manseng
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Italia (Pirovano 65) (PE)
+              </td> 
+              <td class="tb_subitem">
+                61.799
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Maccabeo
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia Amarela
+              </td> 
+              <td class="tb_subitem">
+                115.147
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia Bianca
+              </td> 
+              <td class="tb_subitem">
+                119.122
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia Chianti
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia Verde
+              </td> 
+              <td class="tb_subitem">
+                10.979
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia di Candia
+              </td> 
+              <td class="tb_subitem">
+                1.825.193
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Malvasia Istriana
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Mistura de uvas viníferas branco
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Mistura de uvas viníferas rosado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Branco
+              </td> 
+              <td class="tb_subitem">
+                13.322.429
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Canelli
+              </td> 
+              <td class="tb_subitem">
+                123.255
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Giallo
+              </td> 
+              <td class="tb_subitem">
+                1.641.498
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Nazareno
+              </td> 
+              <td class="tb_subitem">
+                633.606
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Bianco R2
+              </td> 
+              <td class="tb_subitem">
+                618.266
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato de Alexandria
+              </td> 
+              <td class="tb_subitem">
+                184.748
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Moscato Rosado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Muscat à Petits Grains
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Muller Thurgau
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Muscadelle
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Ora
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Palomino
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Petit Manseng
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Peverella
+              </td> 
+              <td class="tb_subitem">
+                43.656
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Pinot Blanc
+              </td> 
+              <td class="tb_subitem">
+                10.174
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Pinot Gris
+              </td> 
+              <td class="tb_subitem">
+                187.685
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Prosecco
+              </td> 
+              <td class="tb_subitem">
+                2.420.715
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Red Veltliner
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Riesling Italico
+              </td> 
+              <td class="tb_subitem">
+                3.172.992
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Riesling Renano
+              </td> 
+              <td class="tb_subitem">
+                195.120
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Sauvignon Blanc(2)
+              </td> 
+              <td class="tb_subitem">
+                855.045
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Sauvignon Gris
+              </td> 
+              <td class="tb_subitem">
+                2.854
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Seara Nova
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Semillon
+              </td> 
+              <td class="tb_subitem">
+                336.252
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Schonburger
+              </td> 
+              <td class="tb_subitem">
+                21.348
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Sylvaner
+              </td> 
+              <td class="tb_subitem">
+                144
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Tocai Friulano
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Trebbiano
+              </td> 
+              <td class="tb_subitem">
+                2.576.020
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Trebbiano Toscano
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Verdea
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Verdelho
+              </td> 
+              <td class="tb_subitem">
+                14.339
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Verdiso
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Vermentino
+              </td> 
+              <td class="tb_subitem">
+                4.844
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Vernaccia
+              </td> 
+              <td class="tb_subitem">
+                3.780
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Viogner
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Viognier
+              </td> 
+              <td class="tb_subitem">
+                200.288
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                Outras(3)
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+         
+      </tbody> 
+
+      <tfoot class="tb_total">
+        <tr>
+          <td>
+            Total
+          </td>
+          <td>
+            75.823.037
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+   
+    <div class="tb_font">
+      Fonte: Uniao Brasileira de Vitivinicultura - UVIBRA. <br> Elaboração: EMBRAPA/CNPUV <br> (1) Inclui Clairette de Provence e Clairette Noir. <br> (2) Grande parte da uva comercializada é Seyve Villard 5276. <br> (3) Tempranilha, Cereza, Criolla Grande, Gargarena, Criolla Chica, Mondeuse, Petit Verdot, Tinta Cao, CG 531, Moscatel Nazereno, Maria Gomes, Perdea, Gros Manseg, Maccabeo, Trousseau e Ariloba, Coleções, Dut Chess, Gross Manseng. <br>  
+    </div>
+  
+    <table class="tb_base tb_link no_print">
+      <tbody><tr>
+        <td>
+          <a class="footer_content" href="download/ProcessaViniferas.csv" target="_blank">
+            <img src="figures/download.png" alt="" width="16" height="16">
+            <span class="spn_small">DOWNLOAD</span>
+          </a>
+        </td>
+        <td class="footer_right">
+          <a class="footer_content" href="#_top">
+            <img src="figures/topo.png" alt="" width="16" height="16">
+            <span class="spn_small">TOPO</span>
+          </a>
+        </td>
+      </tr>
+    </tbody></table>
+   
+    </div>
+  
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+   
+    <table class="tb_base">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center">        
+          <table class="tb_base tb_footer">
+            <tbody><tr>
+              <td>
+                Copyright © Embrapa Uva e Vinho. Todos os direitos reservados.<br>
+                Mais informações: <a class="footer_sac" href="https://www.embrapa.br/fale-conosco/sac">https://www.embrapa.br/fale-conosco/sac</a><br>
+                Última modificação: 21/12/23       
+              </td>
+              <td class="footer_right">
+                Rua Livramento 515, Caixa Postal 130<br>
+                95700-000 Bento Gonçalves, RS - Brasil<br>
+                Fone: (54) 3455-8000 - Fax: (54) 3451-2792
+              </td>
+            </tr>
+          </tbody></table>
+        </td> 
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+
+</body></html>
