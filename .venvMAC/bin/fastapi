@@ -1,4 +1,4 @@
-#!/Users/adilsonyamaguchi/Desktop/TechChallenge-01/.venvMAC/bin/python3.12
+#!/Users/adilsonyamaguchi/Desktop/TechChallenge_01/.venvMAC/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
