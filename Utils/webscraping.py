@@ -17,17 +17,17 @@ from model.negocio import Negocio, eTipo
 
 class WebScraping():
 
-    def __init__(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None) -> None:
+    def __init__(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None):
         try:
             
             with open("../config/parametros.json", "r") as file: # cria contexto (with) para abertura de arquivo com parametros para fechar logo após o bloco
                 data = json.load(file) #carrega os dados do arquivo de parâmetros
             
-            if anoInicio==None: # se nao foi enviado anoInicio, pega o default que está no arquivo /config/parametros.json
-                self.anoInicio = data['ano_inicio_scraping'] #recupera a data de início para webscraping
-            if anoTermino==None: # se nao foi enviado anoInicio, pega o default que está no arquivo /config/parametros.json
-                self.anoTermino = datetime.date.today().year # configura a data de término para webscraping= Ano Atual (no laço FOR o iterador não executa o último número, ou seja, se o ano termino for 2024 o iterador só processa até o ano de 2023. O FOR é inclusivo no limite inferior e exclusivo no limite superior->nao incluindo o último número do RANGE)
+            self.anoInicio = anoInicio if anoInicio is not None else data['ano_inicio_scraping']
+            self.anoTermino = anoTermino if anoTermino is not None else datetime.date.today().year                
             
+            tipo=tipo
+                
         except Exception as e:
             HTTPException(status_code=500, detail=str(e))
         return None
@@ -143,51 +143,52 @@ class WebScraping():
             num_tables = len(table_elements)
             self.__private_CreateParquetFile(nome_tipo=nome_tipo, ano=ano, table_elements=table_elements, nome_subtipo=nome_subtipo)
             
-    def WebScaping(self, anoInicio:int=None, anoTermino:int=None, tipo:eTipo=None):
-
-        if tipo == eTipo.PRODUCAO or tipo == None:
+    def WebScaping(self):
+        anoInicio = self.anoInicio
+        anoTermino = self.anoTermino
+        if self.tipo == eTipo.PRODUCAO or self.tipo == None:
             with Negocio(eTipo.PRODUCAO) as negocio:
                 self.__private_Scraping(negocio=negocio, anoInicio=anoInicio, anoTermino=anoTermino)
         
-        if tipo == eTipo.PROCESSAMENTO or tipo == None:
+        if self.tipo == eTipo.PROCESSAMENTO or self.tipo == None:
             with Negocio(eTipo.PROCESSAMENTO) as negocio:
                 self.__private_Scraping(negocio=negocio, anoInicio=anoInicio, anoTermino=anoTermino)
 
-        if tipo == eTipo.COMERCIALIZACAO or tipo == None:
+        if self.tipo == eTipo.COMERCIALIZACAO or self.tipo == None:
             with Negocio(eTipo.COMERCIALIZACAO) as negocio:
                 self.__private_Scraping(negocio=negocio, anoInicio=anoInicio, anoTermino=anoTermino)
 
-        if tipo == eTipo.IMPORTACAO or tipo == None:
+        if self.tipo == eTipo.IMPORTACAO or self.tipo == None:
             with Negocio(eTipo.IMPORTACAO) as negocio:
                 self.__private_Scraping(negocio=negocio, anoInicio=anoInicio, anoTermino=anoTermino)
 
-        if tipo == eTipo.EXPORTACAO or tipo == None:
+        if self.tipo == eTipo.EXPORTACAO or self.tipo == None:
             with Negocio(eTipo.EXPORTACAO) as negocio:
                 self.__private_Scraping(negocio=negocio, anoInicio=anoInicio, anoTermino=anoTermino)
 
-        if tipo == eTipo.PRODUCAO or tipo == None:
+        if self.tipo == eTipo.PRODUCAO or self.tipo == None:
             with Negocio(eTipo.PRODUCAO) as negocio:
                 for ano in range(anoInicio, anoTermino):
                     self.__private_ProcessHtmlFileToParquet(negocio=negocio, ano=ano)
 
-        if tipo == eTipo.PROCESSAMENTO or tipo == None:
+        if self.tipo == eTipo.PROCESSAMENTO or self.tipo == None:
             with Negocio(eTipo.PROCESSAMENTO) as negocio:
                 for subtipo in negocio.Subtipo:
                     for ano in range(anoInicio, anoTermino):
                         self.__private_ProcessHtmlFileToParquet(negocio=negocio, ano=ano, subtipo=subtipo['Nome'])
 
-        if tipo == eTipo.COMERCIALIZACAO or tipo == None:
+        if self.tipo == eTipo.COMERCIALIZACAO or self.tipo == None:
             with Negocio(eTipo.COMERCIALIZACAO) as negocio:
                 for ano in range(anoInicio, anoTermino):
                     self.__private_ProcessHtmlFileToParquet(negocio=negocio, ano=ano)
 
-        if tipo == eTipo.IMPORTACAO or tipo == None:
+        if self.tipo == eTipo.IMPORTACAO or self.tipo == None:
             with Negocio(eTipo.IMPORTACAO) as negocio:
                 for subtipo in negocio.Subtipo:
                     for ano in range(anoInicio, anoTermino):
                         self.__private_ProcessHtmlFileToParquet(negocio=negocio, ano=ano, subtipo=subtipo['Nome'])
 
-        if tipo == eTipo.EXPORTACAO or tipo == None:
+        if self.tipo == eTipo.EXPORTACAO or self.tipo == None:
             with Negocio(eTipo.EXPORTACAO) as negocio:
                 for subtipo in negocio.Subtipo:
                     for ano in range(anoInicio, anoTermino):
