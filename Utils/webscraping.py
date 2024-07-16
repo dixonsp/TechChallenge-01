@@ -25,12 +25,10 @@ class WebScraping():
             
             self.anoInicio = anoInicio if anoInicio is not None else data['ano_inicio_scraping']
             self.anoTermino = anoTermino if anoTermino is not None else datetime.date.today().year                
-            
-            tipo=tipo
+            self.tipo = tipo  # Corrigido para garantir que self.tipo é atribuído corretamente
                 
         except Exception as e:
             HTTPException(status_code=500, detail=str(e))
-        return None
 
     def __private_save_html_content(self, negocio:Negocio, content:str, ano:int):
         """
@@ -88,6 +86,8 @@ class WebScraping():
         return html_content
 
     def __private_Scraping(self, negocio:Negocio, anoInicio:int=None, anoTermino:int=None):
+        anoInicio = anoInicio if anoInicio is not None else self.anoInicio
+        anoTermino = anoTermino if anoTermino is not None else self.anoTermino
 
         if negocio.tipo in("Producao", "Comercializacao"):
             print(f"inicio:{anoInicio} - termino{anoTermino}")
