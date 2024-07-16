@@ -17,8 +17,6 @@ def root():
     return {'TechChallenge 01':'WEB Scraping, Spark, RDBMS, API, JWT, AWS, Data Lake'}
 
 @app.get("/scraping")
-def scraping(anoInicio:int=None, anoTermino:int=None, tipo:eTipo=None):
-    scraping = WebScraping(anoInicio=anoInicio, anoTermino=anoTermino)
-    scraping.WebScaping()
-
-    return {'TechChallenge 01':'FastAPI, JWT, AWS'}
+def scraping(tipo:eTipo=None, anoInicio:int=2022, anoTermino:int=2024):
+    scraping = WebScraping(anoInicio=anoInicio, anoTermino=anoTermino, tipo=None)
+    scraping.WebScaping(tipo=None ,anoInicio=anoInicio, anoTermino=anoTermino)

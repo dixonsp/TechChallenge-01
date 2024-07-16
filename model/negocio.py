@@ -2,26 +2,26 @@ from enum import Enum
 
 
 class eTipo(Enum): # enumerador para limitar os Negocios para as constantes
-    PRODUCAO = {"Codigo": 2, "Nome": "Producao", "Subtipo":None}
-    PROCESSAMENTO = {"Codigo": 3, "Nome":"Processamento", "Subtipo":[
-    {"Codigo":1, "Nome":"Viníferas"}
-    , {"Codigo":2, "Nome":"Americanas e híbridas"}
-    , {"Codigo":3, "Nome":"Uvas de mesa"}
-    , {"Codigo":4, "Nome":"Sem classificação"}
+    PRODUCAO = {"codigo": 2, "nome": "Producao", "subtipo":None}
+    PROCESSAMENTO = {"codigo": 3, "nome":"Processamento", "subtipo":[
+    {"codigo":1, "nome":"Viníferas"}
+    , {"codigo":2, "nome":"Americanas e híbridas"}
+    , {"codigo":3, "nome":"Uvas de mesa"}
+    , {"codigo":4, "nome":"Sem classificação"}
     ]}
-    COMERCIALIZACAO = {"Codigo": 4, "Nome":"Comercializacao", "Subtipo":None}
-    IMPORTACAO = {"Codigo":5, "Nome":"Importacao", "Subtipo":[
-        {"Codigo":1, "Nome":"Vinhos de mesa"}
-        , {"Codigo":2, "Nome":"Espumantes"}
-        , {"Codigo":3, "Nome":"Uvas frescas"}
-        , {"Codigo":4, "Nome":"Uvas passas"}
-        , {"Codigo":5, "Nome":"Suco de uva"}
+    COMERCIALIZACAO = {"codigo": 4, "nome":"Comercializacao", "subtipo":None}
+    IMPORTACAO = {"codigo":5, "nome":"Importacao", "subtipo":[
+        {"codigo":1, "nome":"Vinhos de mesa"}
+        , {"codigo":2, "nome":"Espumantes"}
+        , {"codigo":3, "nome":"Uvas frescas"}
+        , {"codigo":4, "nome":"Uvas passas"}
+        , {"codigo":5, "nome":"Suco de uva"}
         ]}
-    EXPORTACAO = {"Codigo":6, "Nome":"Exportacao", "Subtipo":[
-    {"Codigo":1, "Nome":"Vinhos de mesa"}
-    , {"Codigo":2, "Nome":"Espumantes"}
-    , {"Codigo":3, "Nome":"Uvas frescas"}
-    , {"Codigo":4, "Nome":"Suco de uva"}
+    EXPORTACAO = {"codigo":6, "nome":"Exportacao", "subtipo":[
+    {"codigo":1, "nome":"Vinhos de mesa"}
+    , {"codigo":2, "nome":"Espumantes"}
+    , {"codigo":3, "nome":"Uvas frescas"}
+    , {"codigo":4, "nome":"Suco de uva"}
     ]}
 
     def __init__(self, nome):
@@ -44,11 +44,11 @@ class eTipo(Enum): # enumerador para limitar os Negocios para as constantes
 class Negocio():
     
     def __init__(self, negocio:eTipo):
-        self.negocio=negocio.value['Nome']
-        self.codigo=negocio.value['Codigo']
-        self.nome=negocio.value['Nome']
-        self.tipo=negocio.value['Nome']
-        self.subtipo=negocio.value['Subtipo']
+        self.negocio=negocio.value['nome']
+        self.codigo=negocio.value['codigo']
+        self.nome=negocio.value['nome']
+        self.tipo=negocio.value['nome']
+        self.subtipo=negocio.value['subtipo']
 
     def __enter__(self):
         print(f"Entrando no contexto de {self.nome}")
