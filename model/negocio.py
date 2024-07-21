@@ -1,7 +1,8 @@
 from enum import Enum
+import json
+import ast
 
-
-class eTipo(Enum): # enumerador para limitar os Negocios para as constantes
+class eTipo(str, Enum): # enumerador para limitar os Negocios para as constantes
     PRODUCAO = {"codigo": 2, "nome": "Producao", "subtipo":None}
     PROCESSAMENTO = {"codigo": 3, "nome":"Processamento", "subtipo":[
     {"codigo":1, "nome":"Viníferas"}
@@ -44,11 +45,12 @@ class eTipo(Enum): # enumerador para limitar os Negocios para as constantes
 class Negocio():
     
     def __init__(self, negocio:eTipo):
-        self.negocio=negocio.value['nome']
-        self.codigo=negocio.value['codigo']
-        self.nome=negocio.value['nome']
-        self.tipo=negocio.value['nome']
-        self.subtipo=negocio.value['subtipo']
+        tipo = ast.literal_eval(negocio.value)
+        print(f'xxxxxxxxxxxxXxxxxxxxxxx{tipo["codigo"]}') 
+        self.codigo=tipo['codigo']
+        self.nome=tipo['nome']
+        self.tipo=tipo['nome']
+        self.subtipo=tipo['subtipo']
 
     def __enter__(self):
         print(f"Entrando no contexto de {self.nome}")
