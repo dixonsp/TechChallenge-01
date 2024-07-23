@@ -1,0 +1,897 @@
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Na página 'Vitibrasil' são apresentadas informações referentes à quantidade de uvas processadas, produção e comercialização de vinhos, suco e derivados provenientes do Estado do Rio Grande do Sul, que representa mais de 90% da produção nacional. Também são apresentados os dados de importações e exportações dos produtos da vitivinicultura.">
+  <meta name="keywords" content="Vinhos, Espumante, Uva, Uvas passas, Suco de uva, Produção, Processamento, Comercialização, Importação, Exportação, Publicação" lang="pt-BR">
+  <meta name="author" content="Embrapa Uva e Vinho"> 
+  <link href="./figures/favicon.ico" rel="Shortcut Icon">
+  <link rel="stylesheet" type="text/css" href="vitibrasil.css">
+  <title>Banco de dados de uva, vinho e derivados</title>
+  <script type="text/javascript" defer="" async="" src="http://hotsites.cnpuv.embrapa.br/estatisticas/piwik.js"></script><script>
+    var x = screen.width;
+    window.onload = function() {  
+      var meta = document.createElement('meta');
+      meta.name = "viewport";
+      if(x < 780) {
+        var val = x/780;
+        meta.content = 'width=device-width, initial-scale=' + val;
+      }
+      else {
+        meta.content = 'width=device-width, initial-scale=1.0';
+      }
+      document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+  </script>
+  <!-- Piwik -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://hotsites.cnpuv.embrapa.br/estatisticas/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 3]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+      g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="http://hotsites.cnpuv.embrapa.br/estatisticas/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+  <!-- End Piwik Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body>
+
+
+    <table class="tb_layout" id="_top">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center" id="td_center">
+          <table class="tb_base">
+            <tbody><tr>
+              <td>
+                <p id="program_title">Dados da Vitivinicultura</p>
+              </td>
+              <td>
+                <p id="program_mail">
+                  <a href="mailto:loiva.mello@embrapa.br">Loiva Maria Ribeiro de Mello</a>
+                  <br>
+                  <a href="mailto:carlos.machado@embrapa.br">Carlos Alberto Ely Machado</a>   
+                </p> 
+              </td>   
+            </tr>
+          </tbody></table>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_layout">
+      <tbody><tr>
+        <td id="tb_banner"></td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_layout no_print">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center" id="row_height">
+          <form action="index.php" method="get">
+            <p id="row_btn">
+              <button class="btn_opt" type="submit" name="opcao" value="opt_01">Apresentação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_02">Produção</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_03">Processamento</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_04" id="btn_active">Comercialização</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_05">Importação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_06">Exportação</button>
+              <button class="btn_opt" type="submit" name="opcao" value="opt_07">Publicação</button>
+            </p>
+          </form>
+          <script>
+            var btn = 'opt_04';
+            var item = document.querySelector('button[value=' + btn + ']');
+            item.setAttribute('id','btn_active');
+          </script>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+    <table class="tb_base">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center">
+          <div class="div_content">
+            <p class="subtitle_1">Banco de dados de uva, vinho e derivados</p>
+            <p class="subtitle_2">Comercialização de vinhos e derivados no Rio Grande do Sul</p>
+            
+    <table class="tb_base tb_header no_print">
+      <tbody><tr>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          <form action="index.php">
+            <p id="p_navegano">
+              <button name="ano" type="submit" value="1970">«</button>
+              <button name="ano" type="submit" value="2010" onclick="if(this.value<1970){this.value=1970}">‹</button>
+              <button id="neutral" disabled="disabled">&nbsp;</button>
+              <button name="ano" type="submit" value="2012" onclick="if(this.value>2023){this.value=2023}">›</button>
+              <button name="ano" type="submit" value="2023">»</button>
+              <input type="hidden" name="opcao" value="opt_04">
+            </p>
+          </form>
+        </td>
+        <td>
+          <form action="index.php"> 
+            <p id="p_ano">
+              <label class="lbl_pesq">Ano: [1970-2023] </label> <br>
+              <input class="text_pesq" type="number" name="ano" value="" min="1970" max="2023" onkeydown="return event.keyCode !== 69" autocomplete="off" required="">&nbsp;
+              <input class="subm_pesq" type="submit" value="Ok">   
+              <input type="hidden" name="opcao" value="opt_04">
+            </p>
+          </form>
+        </td>
+      </tr>
+    </tbody></table>
+  
+    <div class="content_center"> 
+      <p class="text_center"> Comercialização de vinhos e derivados  [2011] </p>
+      
+    <table class="tb_base tb_dados">
+      <thead>
+        <tr>
+          <th>Produto </th>
+          <th>Quantidade (L.) </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <tr>
+        
+              <td class="tb_item">
+                VINHO DE MESA
+              </td> 
+              <td class="tb_item">
+                230.310.468
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Tinto
+              </td> 
+              <td class="tb_subitem">
+                196.562.722
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Rosado
+              </td> 
+              <td class="tb_subitem">
+                1.668.823
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Branco
+              </td> 
+              <td class="tb_subitem">
+                32.078.923
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                VINHO FINO DE MESA
+              </td> 
+              <td class="tb_item">
+                19.967.310
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Tinto
+              </td> 
+              <td class="tb_subitem">
+                14.876.896
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Rosado
+              </td> 
+              <td class="tb_subitem">
+                211.484
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Branco
+              </td> 
+              <td class="tb_subitem">
+                4.878.930
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                VINHO FRIZANTE
+              </td> 
+              <td class="tb_item">
+                1.706.679
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                VINHO ORGÂNICO
+              </td> 
+              <td class="tb_item">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                VINHO ESPECIAL
+              </td> 
+              <td class="tb_item">
+                699
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Tinto
+              </td> 
+              <td class="tb_subitem">
+                699
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Rosado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Branco
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                ESPUMANTES
+              </td> 
+              <td class="tb_item">
+                13.305.275
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Espumante  Moscatel
+              </td> 
+              <td class="tb_subitem">
+                2.996.441
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Espumante
+              </td> 
+              <td class="tb_subitem">
+                10.308.834
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Espumante Orgânico
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                SUCO DE UVAS
+              </td> 
+              <td class="tb_item">
+                45.222.136
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Suco Natural Integral
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Suco Adoçado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Suco Reprocessado/reconstituido
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Suco Orgânico
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Outros sucos de uvas
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                SUCO DE UVAS CONCENTRADO
+              </td> 
+              <td class="tb_item">
+                34.892.316
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_item">
+                OUTROS PRODUTOS COMERCIALIZADOS
+              </td> 
+              <td class="tb_item">
+                28.783.827
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Outros vinhos (sem informação detalhada)
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Agrin (fermentado, acetico misto)
+              </td> 
+              <td class="tb_subitem">
+                5.997.697
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Aguardente de vinho 50°gl
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Alcool vinico
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Bagaceira (graspa)
+              </td> 
+              <td class="tb_subitem">
+                18.111
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Base champenoise champanha
+              </td> 
+              <td class="tb_subitem">
+                41.134
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Base charmat champanha
+              </td> 
+              <td class="tb_subitem">
+                66.220
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Base espumante moscatel
+              </td> 
+              <td class="tb_subitem">
+                22.162
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Bebida de uva
+              </td> 
+              <td class="tb_subitem">
+                532.821
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Borra líquida
+              </td> 
+              <td class="tb_subitem">
+                22.016
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Borra seca
+              </td> 
+              <td class="tb_subitem">
+                73.006
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Brandy (conhaque)
+              </td> 
+              <td class="tb_subitem">
+                5.640
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Cooler
+              </td> 
+              <td class="tb_subitem">
+                4.684.087
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Coquetel com vinho
+              </td> 
+              <td class="tb_subitem">
+                805.235
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Destilado de vinho
+              </td> 
+              <td class="tb_subitem">
+                90.364
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Filtrado doce
+              </td> 
+              <td class="tb_subitem">
+                7.001.836
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Jeropiga
+              </td> 
+              <td class="tb_subitem">
+                57.887
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Mistelas
+              </td> 
+              <td class="tb_subitem">
+                983
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Mosto concentrado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Mosto de uva
+              </td> 
+              <td class="tb_subitem">
+                291.399
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Mosto sulfitado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Nectar de uva
+              </td> 
+              <td class="tb_subitem">
+                5.703.340
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Outros produtos
+              </td> 
+              <td class="tb_subitem">
+                385.029
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Polpa de uva
+              </td> 
+              <td class="tb_subitem">
+                1.875.782
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Preparado líquido para refresco
+              </td> 
+              <td class="tb_subitem">
+                367.193
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Refrigerante +50% suco
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Sangria
+              </td> 
+              <td class="tb_subitem">
+                158.868
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinagre balsamico
+              </td> 
+              <td class="tb_subitem">
+                78.540
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinagre duplo
+              </td> 
+              <td class="tb_subitem">
+                875.720
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinagre simples
+              </td> 
+              <td class="tb_subitem">
+                3.386.303
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinho acetificado
+              </td> 
+              <td class="tb_subitem">
+                983.700
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinho base para espumantes
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinho composto
+              </td> 
+              <td class="tb_subitem">
+                662.965
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinho licoroso
+              </td> 
+              <td class="tb_subitem">
+                593.486
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinho leve
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+        
+        <tr>
+        
+              <td class="tb_subitem">
+                  Vinho gaseificado
+              </td> 
+              <td class="tb_subitem">
+                -
+              </td> 
+            
+        </tr>   
+         
+      </tbody> 
+
+      <tfoot class="tb_total">
+        <tr>
+          <td>
+            Total
+          </td>
+          <td>
+            374.188.710
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+   
+    <div class="tb_font">
+      Fonte: União Brasileira de Vitivinicultura - UVIBRA <br> Elaboração: EMBRAPA/CNPUV <br> Obs: A partir de 1997 houve o desdobramento do item Espumnte em Espumante moscatel e Espumante. <br> Obs: Em 2007 foi incluido o Vinho Tinto Vinífera do Prêmio de Escoamento da Produção do Governo Federal - PEP <br>  
+    </div>
+  
+    <table class="tb_base tb_link no_print">
+      <tbody><tr>
+        <td>
+          <a class="footer_content" href="download/Comercio.csv" target="_blank">
+            <img src="figures/download.png" alt="" width="16" height="16">
+            <span class="spn_small">DOWNLOAD</span>
+          </a>
+        </td>
+        <td class="footer_right">
+          <a class="footer_content" href="#_top">
+            <img src="figures/topo.png" alt="" width="16" height="16">
+            <span class="spn_small">TOPO</span>
+          </a>
+        </td>
+      </tr>
+    </tbody></table>
+   
+    </div>
+  
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+   
+    <table class="tb_base">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td class="col_center">        
+          <table class="tb_base tb_footer">
+            <tbody><tr>
+              <td>
+                Copyright © Embrapa Uva e Vinho. Todos os direitos reservados.<br>
+                Mais informações: <a class="footer_sac" href="https://www.embrapa.br/fale-conosco/sac">https://www.embrapa.br/fale-conosco/sac</a><br>
+                Última modificação: 21/12/23       
+              </td>
+              <td class="footer_right">
+                Rua Livramento 515, Caixa Postal 130<br>
+                95700-000 Bento Gonçalves, RS - Brasil<br>
+                Fone: (54) 3455-8000 - Fax: (54) 3451-2792
+              </td>
+            </tr>
+          </tbody></table>
+        </td> 
+        <td>&nbsp;</td>
+      </tr>
+    </tbody></table>
+  
+
+</body></html>
