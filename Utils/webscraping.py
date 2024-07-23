@@ -17,7 +17,7 @@ from model.negocio import Negocio, eTipo
 
 class WebScraping():
 
-    def __init__(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None):
+    def __init__(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None, persistHtml:bool=None, persistParquet:bool=None):
         #try:
         with open("config/parametros.json", "r") as file: # cria contexto (with) para abertura de arquivo com parametros para fechar logo após o bloco
             data = json.load(file) #carrega os dados do arquivo de parâmetros
@@ -82,7 +82,7 @@ class WebScraping():
         driver.close()
         return html_content
 
-    def __private_Scraping(self, codigo_tipo:int, nome_tipo:str, ano:int, codigo_subtipo:int=None, nome_subtipo:str=None, persist_html:bool=False, persist_parquet:bool=False):
+    def __private_Scraping(self, codigo_tipo:int, nome_tipo:str, ano:int, codigo_subtipo:int=None, nome_subtipo:str=None, persistHtml:bool=False, persistParquet:bool=False):
         if nome_tipo in("Producao", "Comercializacao"):
             url = f"http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&opcao=opt_0{codigo_tipo}"
         elif nome_tipo in ("Processamento", "Importacao", "Exportacao"):
@@ -91,11 +91,11 @@ class WebScraping():
             raise HTTPException(status_code=500, detail=f"tipo_negocio `{nome_tipo}` invalido")
         
         html_content =  self.__private_getContent(url=url)
-        if persist_html:
+        if persistHtml:
             self.__private_save_html_content(nome_tipo=nome_tipo, content=html_content, ano=ano, nome_subtipo=nome_subtipo)
         
         df = self.__private_ProcessHtml(nome_tipo=nome_tipo, ano=ano, html_content=html_content)
-        if persist_parquet:
+        if persistParquet:
             self.__private_CreateParquetFile(nome_tipo=nome_tipo, ano=ano, nome_subtipo=nome_subtipo)
         return df
         
@@ -108,7 +108,7 @@ class WebScraping():
             raise HTTPException(status_code=500, detail=f"tipo_negocio `{nome_subtipo}` invalido")
         df.to_parquet(arquivo_parquet, engine='pyarrow')
 
-    def __private_ProcessHtml(self, nome_tipo:str, ano:int, html_content:str, nome_subtipo:str=None, persist_parquet:bool=None):
+    def __private_ProcessHtml(self, nome_tipo:str, ano:int, html_content:str, nome_subtipo:str=None, persistParquet:bool=None):
         parser = etree.HTMLParser()
         tree = etree.fromstring(html_content, parser)
         table_elements = tree.xpath('//table[contains(@class, "tb_base") and contains(@class, "tb_dados")]')
@@ -128,9 +128,8 @@ class WebScraping():
         combined_df = pd.concat(dfs, ignore_index=True)
         return combined_df
 
-        self.__private_CreateParquetFile(nome_tipo=nome_tipo, ano=ano, table_elements=table_elements, nome_subtipo=nome_subtipo)
             
-    def WebScaping(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None):
+    def WebScaping(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None, persistHtml:bool=False, persistParquet:bool=False):
         
         anoInicio = self.anoInicio
         anoTermino = self.anoTermino
@@ -153,10 +152,11 @@ class WebScraping():
             for ano in range(anoInicio, anoTermino+1):
                 print(f"****** Scraping: {tipo} ano: {ano} até: {anoTermino}")
                 with Negocio(tipo) as negocio:
-                    df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=None, nome_subtipo=None, persist_html=False, persist_parquet=False)
+                    df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=None, nome_subtipo=None, persistHtml=False, persistParquet=False)
                     if df is not None and len(df)>0: 
                         dfIteracoes.append(df)
-            arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
+            if persistParquet:
+                arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
         
         elif tipo == eTipo.PROCESSAMENTO or tipo == eTipo.IMPORTACAO or tipo == eTipo.EXPORTACAO:
             dfIteracoes = []
@@ -164,7 +164,7 @@ class WebScraping():
                 for subtipo in negocio.subtipo:
                     for ano in range(anoInicio, anoTermino+1):
                         print(f"****** Scraping:{tipo}, {subtipo} ano: {ano} até: {anoTermino}")
-                        df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=subtipo["codigo"], nome_subtipo=subtipo["nome"], persist_html=False, persist_parquet=False)
+                        df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=subtipo["codigo"], nome_subtipo=subtipo["nome"], persistHtml=False, persistParquet=False)
                         if df is not None and len(df)>0: 
                             dfIteracoes.append(df)
                 arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"

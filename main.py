@@ -27,31 +27,31 @@ def root():
     return {'TechChallenge 01':'WEB Scraping, Spark, RDBMS, API, JWT, AWS, Data Lake'}
 
 @app.get("/WebScrapingProduto")
-def scraping(anoInicio:int=None, anoTermino:int=None):
+def scraping(anoInicio:int=None, anoTermino:int=None, persistHtml:bool=True, persistParquet:bool=True):
     #logger.debug("LOG:INICIANDO WebScraping")
-    scraping = WebScraping(tipo=eTipo.PRODUCAO, anoInicio=anoInicio, anoTermino=anoTermino)
-    scraping.WebScaping(tipo=eTipo.PRODUCAO ,anoInicio=anoInicio, anoTermino=anoTermino)
+    scraping = WebScraping(tipo=eTipo.PRODUCAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
+    scraping.WebScaping(tipo=eTipo.PRODUCAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
     #logger.debug("LOG:WebScraping FINALIZADO")
 
 @app.get("/WebScrapingProcessamento")
-def scraping(anoInicio:int=None, anoTermino:int=None):
-    scraping = WebScraping(tipo=eTipo.PROCESSAMENTO, anoInicio=anoInicio, anoTermino=anoTermino)
-    scraping.WebScaping(tipo=eTipo.PROCESSAMENTO ,anoInicio=anoInicio, anoTermino=anoTermino)
+def scraping(anoInicio:int=None, anoTermino:int=None, persistHtml:bool=True, persistParquet:bool=True):
+    scraping = WebScraping(tipo=eTipo.PROCESSAMENTO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
+    scraping.WebScaping(tipo=eTipo.PROCESSAMENTO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
 
 @app.get("/WebScrapingComercializacao")
-def scraping(anoInicio:int=None, anoTermino:int=None):
-    scraping = WebScraping(tipo=eTipo.COMERCIALIZACAO, anoInicio=anoInicio, anoTermino=anoTermino)
-    scraping.WebScaping(tipo=eTipo.COMERCIALIZACAO ,anoInicio=anoInicio, anoTermino=anoTermino)
+def scraping(anoInicio:int=None, anoTermino:int=None, persistHtml:bool=True, persistParquet:bool=True):
+    scraping = WebScraping(tipo=eTipo.COMERCIALIZACAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
+    scraping.WebScaping(tipo=eTipo.COMERCIALIZACAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
 
 @app.get("/WebScrapingImportacao")
-def scraping(anoInicio:int=None, anoTermino:int=None):
-    scraping = WebScraping(tipo=eTipo.IMPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino)
-    scraping.WebScaping(tipo=eTipo.IMPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino)
+def scraping(anoInicio:int=None, anoTermino:int=None, persistHtml:bool=True, persistParquet:bool=True):
+    scraping = WebScraping(tipo=eTipo.IMPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
+    scraping.WebScaping(tipo=eTipo.IMPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
 
 @app.get("/WebScrapingExportacao")
-def scraping(anoInicio:int=None, anoTermino:int=None):
-    scraping = WebScraping(tipo=eTipo.EXPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino)
-    scraping.WebScaping(tipo=eTipo.EXPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino)
+def scraping(anoInicio:int=None, anoTermino:int=None, persistHtml:bool=True, persistParquet:bool=True):
+    scraping = WebScraping(tipo=eTipo.EXPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
+    scraping.WebScaping(tipo=eTipo.EXPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
