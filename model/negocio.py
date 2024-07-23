@@ -28,15 +28,12 @@ class eTipo(str, Enum): # enumerador para limitar os Negocios para as constantes
     def __init__(self, nome):
         super().__init__()
         self.nome=nome
-        print(f"Entrando no init de {self.nome}")
         return self
 
     def __enter__(self):
-        print(f"Entrando no contexto de {self.nome}")
         return self
 
     def __exit__(self):
-        print(f"Saindo do contexto de {self.nome}")
         return False  # Re-raise exceptions, if any
     
 """
@@ -46,18 +43,15 @@ class Negocio():
     
     def __init__(self, negocio:eTipo):
         tipo = ast.literal_eval(negocio.value)
-        print(f'xxxxxxxxxxxxXxxxxxxxxxx{tipo["codigo"]}') 
         self.codigo=tipo['codigo']
         self.nome=tipo['nome']
         self.tipo=tipo['nome']
         self.subtipo=tipo['subtipo']
 
     def __enter__(self):
-        print(f"Entrando no contexto de {self.nome}")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print(f"Saindo do contexto de {self.nome}")
         if exc_type:
             print(f"Tipo de exceção: {exc_type}")
             print(f"Valor da exceção: {exc_val}")

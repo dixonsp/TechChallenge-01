@@ -19,12 +19,11 @@ class WebScraping():
 
     def __init__(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None):
         #try:
-        print(f"INIT -> PASTA--->{os.getcwd()}")
         with open("config/parametros.json", "r") as file: # cria contexto (with) para abertura de arquivo com parametros para fechar logo após o bloco
             data = json.load(file) #carrega os dados do arquivo de parâmetros
         
         self.anoInicio = anoInicio if anoInicio is not None else int(data['ano_inicio_scraping'])
-        self.anoTermino = anoTermino if anoTermino is not None else datetime.date.today().year                
+        self.anoTermino = anoTermino if anoTermino is not None else datetime.now().year                
         self.tipo = tipo  # Corrigido para garantir que self.tipo é atribuído corretamente
                 
         #except Exception as e:
@@ -41,14 +40,13 @@ class WebScraping():
             nome_subtipo (str - opcional com default=None): especialização de tipo
         
         Returns:
-            str: caminho do arquivo gerado.
+            str: caminho e nome do arquivo gerado.
 
         Raises:
             HTTPException: Se ocorrer qualquer erro durante o processo de gravação.
         """
 
         #try: #inicia tratamento de erro
-        print(f"PASTA--->{os.getcwd()}")
         if nome_tipo in("Producao", "Comercializacao"):
             arquivo = f"data/html/{nome_tipo}_{ano}.html"
         elif nome_tipo in ("Processamento", "Importacao", "Exportacao"):
@@ -133,11 +131,12 @@ class WebScraping():
         self.__private_CreateParquetFile(nome_tipo=nome_tipo, ano=ano, table_elements=table_elements, nome_subtipo=nome_subtipo)
             
     def WebScaping(self, tipo:eTipo=None, anoInicio:int=None, anoTermino:int=None):
-        print(f"---WEBSCRAPING->{tipo.value}")
-        #tipo = self.tipo
-        #anoInicio = self.anoInicio
-        #anoTermino = self.anoTermino
+        
+        anoInicio = self.anoInicio
+        anoTermino = self.anoTermino
+        tipo = self.tipo
 
+        print(f"*** INICIANDO WEBSCRAPING->{tipo.value} -> Ano Inicio -> {anoInicio} Ano Termino {anoTermino}")
 
         agora = datetime.now()
 
@@ -147,59 +146,28 @@ class WebScraping():
             if anoTermino > agora.year:
                 raise HTTPException(status_code=500, detail=f"Ano Término não pode ser maior do que o Ano Atual.")
 
-        if tipo == eTipo.PRODUCAO or tipo==None:
-            print(f"TIPO CODIGO ------->PRODUCAAAAAAO")
-            with Negocio(eTipo.PRODUCAO) as negocio:
-                dfIteracoes = []
-                for ano in range(anoInicio, anoTermino+1):
+        df = None
+
+        if tipo == eTipo.PRODUCAO or tipo == eTipo.COMERCIALIZACAO:
+            dfIteracoes = []
+            for ano in range(anoInicio, anoTermino+1):
+                print(f"****** Scraping: {tipo} ano: {ano} até: {anoTermino}")
+                with Negocio(tipo) as negocio:
                     df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=None, nome_subtipo=None, persist_html=False, persist_parquet=False)
-                    if df is not None and len(df)>0: dfIteracoes.append(df)
-                arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
-                df = pd.concat(dfIteracoes, ignore_index=True)
-                df.to_parquet(arquivo_parquet, engine='pyarrow')
+                    if df is not None and len(df)>0: 
+                        dfIteracoes.append(df)
+            arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
         
-        if tipo == eTipo.PROCESSAMENTO or tipo==None:
-            with Negocio(eTipo.PROCESSAMENTO) as negocio:
-                dfIteracoes = []
+        elif tipo == eTipo.PROCESSAMENTO or tipo == eTipo.IMPORTACAO or tipo == eTipo.EXPORTACAO:
+            dfIteracoes = []
+            with Negocio(tipo) as negocio:
                 for subtipo in negocio.subtipo:
                     for ano in range(anoInicio, anoTermino+1):
-                        with Negocio(eTipo.PROCESSAMENTO) as negocio:
-                            df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=subtipo["codigo"], nome_subtipo=subtipo["nome"], persist_html=False, persist_parquet=False)
-                            if df is not None and len(df)>0: dfIteracoes.append(df)
+                        print(f"****** Scraping:{tipo}, {subtipo} ano: {ano} até: {anoTermino}")
+                        df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=subtipo["codigo"], nome_subtipo=subtipo["nome"], persist_html=False, persist_parquet=False)
+                        if df is not None and len(df)>0: 
+                            dfIteracoes.append(df)
                 arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
-                df = pd.concat(dfIteracoes, ignore_index=True)
-                df.to_parquet(arquivo_parquet, engine='pyarrow')
 
-        if tipo == eTipo.COMERCIALIZACAO or tipo==None:
-            with Negocio(eTipo.COMERCIALIZACAO) as negocio:
-                dfIteracoes = []
-                for ano in range(anoInicio, anoTermino+1):
-                    df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=None, nome_subtipo=None, persist_html=False, persist_parquet=False)
-                    if df is not None and len(df)>0: dfIteracoes.append(df)
-                arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
-                df = pd.concat(dfIteracoes, ignore_index=True)
-                df.to_parquet(arquivo_parquet, engine='pyarrow')
-
-        if tipo == eTipo.IMPORTACAO or tipo==None:
-            with Negocio(eTipo.IMPORTACAO) as negocio:
-                dfIteracoes = []
-                for subtipo in negocio.subtipo:
-                    for ano in range(anoInicio, anoTermino+1):
-                        with Negocio(eTipo.IMPORTACAO) as negocio:
-                            df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=subtipo["codigo"], nome_subtipo=subtipo["nome"], persist_html=False, persist_parquet=False)
-                            if df is not None and len(df)>0: dfIteracoes.append(df)
-                arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
-                df = pd.concat(dfIteracoes, ignore_index=True)
-                df.to_parquet(arquivo_parquet, engine='pyarrow')
-
-        if tipo == eTipo.EXPORTACAO or tipo==None:
-            with Negocio(eTipo.EXPORTACAO) as negocio:
-                dfIteracoes = []
-                for subtipo in negocio.subtipo:
-                    for ano in range(anoInicio, anoTermino+1):
-                        with Negocio(eTipo.EXPORTACAO) as negocio:
-                            df = self.__private_Scraping(codigo_tipo=negocio.codigo, nome_tipo=negocio.tipo, ano=ano, codigo_subtipo=subtipo["codigo"], nome_subtipo=subtipo["nome"], persist_html=False, persist_parquet=False)
-                            if df is not None and len(df)>0: dfIteracoes.append(df)
-                arquivo_parquet = f"data/parquet/{negocio.tipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
-                df = pd.concat(dfIteracoes, ignore_index=True)
-                df.to_parquet(arquivo_parquet, engine='pyarrow')
+        df = pd.concat(dfIteracoes, ignore_index=True)
+        df.to_parquet(arquivo_parquet, engine='pyarrow')

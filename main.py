@@ -3,6 +3,7 @@ import sys
 from model.negocio import eTipo
 import logging
 from datetime import datetime
+import uvicorn
 
 logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -25,19 +26,32 @@ app = FastAPI()
 def root():
     return {'TechChallenge 01':'WEB Scraping, Spark, RDBMS, API, JWT, AWS, Data Lake'}
 
-@app.get("/scraping")
-def scraping(tipo:eTipo= Query(...), anoInicio:int=2022, anoTermino:int=2022):
-    logger.debug("LOG:INICIANDO WebScraping")
+@app.get("/WebScrapingProduto")
+def scraping(anoInicio:int=None, anoTermino:int=None):
+    #logger.debug("LOG:INICIANDO WebScraping")
+    scraping = WebScraping(tipo=eTipo.PRODUCAO, anoInicio=anoInicio, anoTermino=anoTermino)
+    scraping.WebScaping(tipo=eTipo.PRODUCAO ,anoInicio=anoInicio, anoTermino=anoTermino)
+    #logger.debug("LOG:WebScraping FINALIZADO")
 
-    print(f'INICIANDO WebScraping: {data_hora_formatada}')
+@app.get("/WebScrapingProcessamento")
+def scraping(anoInicio:int=None, anoTermino:int=None):
+    scraping = WebScraping(tipo=eTipo.PROCESSAMENTO, anoInicio=anoInicio, anoTermino=anoTermino)
+    scraping.WebScaping(tipo=eTipo.PROCESSAMENTO ,anoInicio=anoInicio, anoTermino=anoTermino)
 
-    scraping = WebScraping(anoInicio=anoInicio, anoTermino=anoTermino, tipo=None)
+@app.get("/WebScrapingComercializacao")
+def scraping(anoInicio:int=None, anoTermino:int=None):
+    scraping = WebScraping(tipo=eTipo.COMERCIALIZACAO, anoInicio=anoInicio, anoTermino=anoTermino)
+    scraping.WebScaping(tipo=eTipo.COMERCIALIZACAO ,anoInicio=anoInicio, anoTermino=anoTermino)
 
-    if anoInicio==2022:
-        tipoSelecionado = tipo
-        print(f"---TIPO CERTO->{tipo.value}")
+@app.get("/WebScrapingImportacao")
+def scraping(anoInicio:int=None, anoTermino:int=None):
+    scraping = WebScraping(tipo=eTipo.IMPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino)
+    scraping.WebScaping(tipo=eTipo.IMPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino)
 
-    scraping.WebScaping(tipo=tipo ,anoInicio=anoInicio, anoTermino=anoTermino)
-    print(f'WebScraping FINALIZADO: {data_hora_formatada}')
-    logger.debug("LOG:WebScraping FINALIZADO")
-    
+@app.get("/WebScrapingExportacao")
+def scraping(anoInicio:int=None, anoTermino:int=None):
+    scraping = WebScraping(tipo=eTipo.EXPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino)
+    scraping.WebScaping(tipo=eTipo.EXPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
