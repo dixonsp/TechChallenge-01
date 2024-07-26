@@ -24,34 +24,34 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {'TechChallenge 01':'WEB Scraping, Spark, RDBMS, API, JWT, AWS, Data Lake'}
+    return {'TechChallenge 01':'WEB Scraping, Spark, Parquet, API, JWT'}
 
 @app.get("/WebScrapingProduto")
-def scraping(anoInicio:int=1970, anoTermino:int=2024, persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
+def scraping(persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
     #logger.debug("LOG:INICIANDO WebScraping")
-    scraping = WebScraping(tipo=eTipo.PRODUCAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
-    scraping.WebScaping(tipo=eTipo.PRODUCAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+    scraping = WebScraping(tipo=eTipo.PRODUCAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+    scraping.WebScaping(tipo=eTipo.PRODUCAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
     #logger.debug("LOG:WebScraping FINALIZADO")
 
 @app.get("/WebScrapingProcessamento")
-def scraping(anoInicio:int=1970, anoTermino:int=2024, persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
-    scraping = WebScraping(tipo=eTipo.PROCESSAMENTO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
-    scraping.WebScaping(tipo=eTipo.PROCESSAMENTO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+def scraping(persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
+    scraping = WebScraping(tipo=eTipo.PROCESSAMENTO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+    scraping.WebScaping(tipo=eTipo.PROCESSAMENTO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
 
 @app.get("/WebScrapingComercializacao")
-def scraping(anoInicio:int=1970, anoTermino:int=2024, persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
-    scraping = WebScraping(tipo=eTipo.COMERCIALIZACAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
-    scraping.WebScaping(tipo=eTipo.COMERCIALIZACAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+def scraping(persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
+    scraping = WebScraping(tipo=eTipo.COMERCIALIZACAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+    scraping.WebScaping(tipo=eTipo.COMERCIALIZACAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
 
 @app.get("/WebScrapingImportacao")
-def scraping(anoInicio:int=1970, anoTermino:int=2024, persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
-    scraping = WebScraping(tipo=eTipo.IMPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
-    scraping.WebScaping(tipo=eTipo.IMPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+def scraping(persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
+    scraping = WebScraping(tipo=eTipo.IMPORTACAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+    scraping.WebScaping(tipo=eTipo.IMPORTACAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
 
 @app.get("/WebScrapingExportacao")
-def scraping(anoInicio:int=1970, anoTermino:int=2024, persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
-    scraping = WebScraping(tipo=eTipo.EXPORTACAO, anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
-    scraping.WebScaping(tipo=eTipo.EXPORTACAO ,anoInicio=anoInicio, anoTermino=anoTermino, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+def scraping(persistHtml:bool=True, persistParquet:bool=True, lerHTML_SemScraping:bool=True):
+    scraping = WebScraping(tipo=eTipo.EXPORTACAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
+    scraping.WebScaping(tipo=eTipo.EXPORTACAO, persistHtml=persistHtml, persistParquet=persistParquet, lerHTML_SemScraping=lerHTML_SemScraping)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
