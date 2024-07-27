@@ -4,6 +4,10 @@ from model.negocio import eTipo
 import logging
 from datetime import datetime
 import uvicorn
+from fastapi import FastAPI, Query
+from fastapi import HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from typing import Annotated
 
 logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -11,14 +15,9 @@ logger = logging.getLogger(__name__)
 agora = datetime.now()
 data_hora_formatada = agora.strftime("%Y-%m-%d %H:%M:%S")
 
-
 root = os.path.abspath("./Utils")
 sys.path.append(root)
-
-from fastapi import FastAPI, Query
-from fastapi import HTTPException
 from Utils.webscraping import WebScraping
-
 
 app = FastAPI()
 

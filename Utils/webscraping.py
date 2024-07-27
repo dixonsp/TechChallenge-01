@@ -147,6 +147,7 @@ class WebScraping():
                         df["tipo"] = negocio.tipo
                         dfIteracoes.append(df)
             df = pd.concat(dfIteracoes, ignore_index=True)
+            df = df.astype(str)
             if persistParquet:
                 self.__private_CreateParquetFile(tipo=tipo, anoInicio=anoInicio, anoTermino=anoTermino, df=df, nome_subtipo=None)
 
@@ -160,8 +161,9 @@ class WebScraping():
                         if df is not None and len(df)>0: 
                             df["ano"] = ano
                             df["tipo"] = negocio.tipo
-                            df["subtipo"] = subtipo
+                            df["subtipo"] = subtipo["nome"]
                             dfIteracoes.append(df)
                     df = pd.concat(dfIteracoes, ignore_index=True)
+                    df = df.astype(str)
                     if persistParquet:
                         self.__private_CreateParquetFile(tipo=tipo, anoInicio=anoInicio, anoTermino=anoTermino, df=df, nome_subtipo=subtipo["nome"])

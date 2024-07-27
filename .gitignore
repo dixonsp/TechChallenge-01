@@ -1,2 +1,3 @@
 .venvMAC/
 OLD/
+*__pycache__
