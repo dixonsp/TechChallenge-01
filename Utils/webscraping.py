@@ -11,22 +11,26 @@ from io import StringIO # importa a biblioteca io para trabalhar com o sistema d
 import pyarrow
 import os
 import sys
-root = os.path.abspath("./..")
-sys.path.append(root)
+#root = os.path.abspath("./..")
+#sys.path.append(root)
 from model.negocio import Negocio, eTipo
+from Utils.utils import create_sqlite_database
 
 class WebScraping():
 
-    def __init__(self, tipo:eTipo=None, persistHtml:bool=None, persistParquet:bool=None, lerHTML_SemScraping:bool=None):
+    def __init__(self, tipo:eTipo=None, persistHtml:bool=None, persistParquet:bool=None, lerHTML_SemScraping:bool=None, dbconnection:any=None):
         with open("config/parametros.json", "r") as file: # cria contexto (with) para abertura de arquivo com parametros para fechar logo após o bloco
             data = json.load(file) #carrega os dados do arquivo de parâmetros
-        
+
+        dbconnection = create_sqlite_database("data/sqlite/TechChallenge01.db")
+
         self.anoInicio = int(data['ano_inicio_scraping'])
         self.anoTermino = datetime.now().year                
         self.tipo = tipo
         self.persistHtml = persistHtml
         self.persistParquet = persistParquet
         self.lerHTML_SemScraping=lerHTML_SemScraping
+        self.dbconnection = dbconnection
                 
     def __private_save_html_content(self, content:str, nome_tipo:str, ano:int, nome_subtipo:str=None) -> str:
         """

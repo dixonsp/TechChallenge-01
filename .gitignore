@@ -1,3 +1,5 @@
 .venvMAC/
 OLD/
 *__pycache__
+LAB/
+data/*
