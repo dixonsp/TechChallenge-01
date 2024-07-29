@@ -14,15 +14,14 @@ import sys
 #root = os.path.abspath("./..")
 #sys.path.append(root)
 from model.negocio import Negocio, eTipo
-from Utils.utils import create_sqlite_database
+from Utils.utils import conectar_sqlite
+from Utils.parquetprocessing import retorna_arquivos, processa_bronze
 
 class WebScraping():
 
     def __init__(self, tipo:eTipo=None, persistHtml:bool=None, persistParquet:bool=None, lerHTML_SemScraping:bool=None, dbconnection:any=None):
         with open("config/parametros.json", "r") as file: # cria contexto (with) para abertura de arquivo com parametros para fechar logo após o bloco
             data = json.load(file) #carrega os dados do arquivo de parâmetros
-
-        dbconnection = create_sqlite_database("data/sqlite/TechChallenge01.db")
 
         self.anoInicio = int(data['ano_inicio_scraping'])
         self.anoTermino = datetime.now().year                
@@ -86,9 +85,9 @@ class WebScraping():
 
     def __private_CreateParquetFile(self, tipo:eTipo, anoInicio:int, anoTermino:int, df:any, nome_subtipo:str=None):
         if tipo in(eTipo.PRODUCAO, eTipo.COMERCIALIZACAO):
-            arquivo_parquet = f"data/parquet/{tipo.nome}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
+            arquivo_parquet = f"data/parquet/bronze/{tipo.nome}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
         elif tipo in (eTipo.PROCESSAMENTO, eTipo.IMPORTACAO, eTipo.EXPORTACAO):
-            arquivo_parquet = f"data/parquet/{tipo.nome}_{nome_subtipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
+            arquivo_parquet = f"data/parquet/bronze/{tipo.nome}_{nome_subtipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
         df.to_parquet(arquivo_parquet, engine='pyarrow')
 
     def __private_Scraping(self, codigo_tipo:int, nome_tipo:str, ano:int, codigo_subtipo:int=None, nome_subtipo:str=None, persistHtml:bool=False, persistParquet:bool=False):
@@ -126,7 +125,6 @@ class WebScraping():
         combined_df = pd.concat(dfs, ignore_index=True)
         return combined_df
 
-
             
     def WebScaping(self, tipo:eTipo=None, persistHtml:bool=False, persistParquet:bool=False, lerHTML_SemScraping:bool=True):
         
@@ -136,6 +134,25 @@ class WebScraping():
         persistHtml = self.persistHtml
         persistParquet = self.persistParquet
 
+        #arquivos_bronze = parquetprocessing.processa_bronze(tipo, 'data/parquet/bronze')
+
+        #if arquivos_bronze != None:
+            #print(f"*** ARQUIVO PARQUET NA CAMADA BRONZE ENCONTRADO->INICIANDO LEITURA->{tipo.nome}")
+            #arquivos_silver = parquetprocessing.processa_silver(tipo, 'data/parquet/silver')
+                #df = pd.read_parquet(arquivo_silver)
+            
+        arquivos = retorna_arquivos(tipo=tipo, path='data/parquet/silver')
+        if len(arquivos) == 1:
+            print(f"Arquivo(s) na camada silver encontrado(s). Só pode existir 1 arquivo de cada tipo no formato parquet na pasta.")
+            df = pd.read_parquet(arquivos[0])
+            return df.to_json()
+
+        arquivos = retorna_arquivos(tipo=tipo, path='data/parquet/bronze')
+        if len(arquivos) > 1:
+            print(f"Arquivo(s) na camada bronze encontrado(s). Processando para gerar a camada Silver.")
+            processa_bronze(tipo, 'data/parquet/bronze')
+            return
+        
         print(f"*** INICIANDO WEBSCRAPING->{tipo.nome} -> Ano Inicio -> {anoInicio} Ano Termino {anoTermino}")
 
         df = None
@@ -154,6 +171,7 @@ class WebScraping():
             df = df.astype(str)
             if persistParquet:
                 self.__private_CreateParquetFile(tipo=tipo, anoInicio=anoInicio, anoTermino=anoTermino, df=df, nome_subtipo=None)
+                processa_bronze(tipo, 'data/parquet/bronze')
 
         elif tipo in(eTipo.PROCESSAMENTO, eTipo.IMPORTACAO, eTipo.EXPORTACAO):
             with Negocio(tipo) as negocio:
@@ -171,3 +189,10 @@ class WebScraping():
                     df = df.astype(str)
                     if persistParquet:
                         self.__private_CreateParquetFile(tipo=tipo, anoInicio=anoInicio, anoTermino=anoTermino, df=df, nome_subtipo=subtipo["nome"])
+                        processa_bronze(tipo, 'data/parquet/bronze')
+        
+        arquivos = retorna_arquivos(tipo=tipo, path='data/parquet/silver')
+        if len(arquivos) == 1:
+            print(f"Arquivo(s) na camada silver encontrado(s). Só pode existir 1 arquivo de cada tipo no formato parquet na pasta.")
+            df = pd.read_parquet(arquivos[0])
+            return df.to_json()
