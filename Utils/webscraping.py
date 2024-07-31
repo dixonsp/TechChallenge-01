@@ -11,9 +11,6 @@ from lxml import etree # importa lxlm para trabalhar com conteúdo HTML
 from io import StringIO # importa a biblioteca io para trabalhar com o sistema de arquivos
 import pyarrow
 import os
-import sys
-#root = os.path.abspath("./..")
-#sys.path.append(root)
 from model.negocio import Negocio, eTipo
 from Utils.utils import conectar_sqlite
 from Utils.parquetprocessing import retorna_arquivos, processa_bronze
@@ -49,30 +46,6 @@ class WebScraping():
             HTTPException: Se ocorrer qualquer erro durante o processo de gravação.
         """
 
-        path = f"data"
-        if not Path.exists():
-            path.mkdir(parents=True)
-        
-        path = f"data/html"
-        if not Path.exists():
-            path.mkdir(parents=True)
-        
-        path = f"data/parquet"
-        if not Path.exists():
-            path.mkdir(parents=True)
-        
-        path = f"data/parquet/bronze"
-        if not Path.exists():
-            path.mkdir(parents=True)
-        
-        path = f"data/parquet/silver"
-        if not Path.exists():
-            path.mkdir(parents=True)
-
-        path = f"data/parquet/gold"
-        if not Path.exists():
-            path.mkdir(parents=True)
-
         #try: #inicia tratamento de erro
         if nome_tipo in("Producao", "Comercializacao"):
             arquivo = f"data/html/{nome_tipo}_{ano}.html"
@@ -89,9 +62,6 @@ class WebScraping():
 
         return arquivo
         
-        #except Exception as e:
-        #    raise HTTPException(status_code=500, detail=str(e))
-
     def __private_getContent(self, url:str):
         options = Options()
         # executa o navegador sem a UI
@@ -113,7 +83,7 @@ class WebScraping():
             arquivo_parquet = f"data/parquet/bronze/{tipo.nome}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
         elif tipo in (eTipo.PROCESSAMENTO, eTipo.IMPORTACAO, eTipo.EXPORTACAO):
             arquivo_parquet = f"data/parquet/bronze/{tipo.nome}_{nome_subtipo}_{anoInicio}{f'_{anoTermino}' if anoTermino is not None and anoTermino != anoInicio else ''}.parquet"
-        df.to_parquet(arquivo_parquet, engine='pyarrow')
+        df.to_parquet(arquivo_parquet, engine=pyarrow)
 
     def __private_Scraping(self, codigo_tipo:int, nome_tipo:str, ano:int, codigo_subtipo:int=None, nome_subtipo:str=None, persistHtml:bool=False, persistParquet:bool=False):
         if nome_tipo in("Producao", "Comercializacao"):
@@ -150,6 +120,9 @@ class WebScraping():
         combined_df = pd.concat(dfs, ignore_index=True)
         return combined_df
 
+    def __private_datafFolderStructureCheck(self, path:str):
+        if not os.path.exists(path):
+            os.mkdir(path=path)
             
     def WebScaping(self, tipo:eTipo=None, persistHtml:bool=False, persistParquet:bool=False, lerHTML_SemScraping:bool=True):
         
@@ -159,13 +132,19 @@ class WebScraping():
         persistHtml = self.persistHtml
         persistParquet = self.persistParquet
 
-        #arquivos_bronze = parquetprocessing.processa_bronze(tipo, 'data/parquet/bronze')
+        self.__private_datafFolderStructureCheck("data")
+        self.__private_datafFolderStructureCheck("data/html")
+        self.__private_datafFolderStructureCheck("data/parquet")
+        self.__private_datafFolderStructureCheck("data/parquet/bronze")
+        self.__private_datafFolderStructureCheck("data/parquet/silver")
+        self.__private_datafFolderStructureCheck("data/parquet/gold")
 
-        #if arquivos_bronze != None:
-            #print(f"*** ARQUIVO PARQUET NA CAMADA BRONZE ENCONTRADO->INICIANDO LEITURA->{tipo.nome}")
-            #arquivos_silver = parquetprocessing.processa_silver(tipo, 'data/parquet/silver')
-                #df = pd.read_parquet(arquivo_silver)
-            
+        arquivos = retorna_arquivos(tipo=tipo, path='data/parquet/gold')
+        if len(arquivos) == 1:
+            print(f"Arquivo(s) na camada gold encontrado(s). Só pode existir 1 arquivo de cada tipo no formato parquet na pasta.")
+            df = pd.read_parquet(arquivos[0])
+            return df.to_json()
+        
         arquivos = retorna_arquivos(tipo=tipo, path='data/parquet/silver')
         if len(arquivos) == 1:
             print(f"Arquivo(s) na camada silver encontrado(s). Só pode existir 1 arquivo de cada tipo no formato parquet na pasta.")
