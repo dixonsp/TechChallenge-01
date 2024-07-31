@@ -1,3 +1,4 @@
+from pathlib import Path
 from selenium import webdriver # importa módulo webdriver para realizar webscraping
 from selenium.webdriver.chrome.options import Options # importa módulo Options para definição de parametros para a execução do browser chrome
 from fastapi import HTTPException # importa módulo para o tratamento de exeções  HTTP
@@ -47,6 +48,30 @@ class WebScraping():
         Raises:
             HTTPException: Se ocorrer qualquer erro durante o processo de gravação.
         """
+
+        path = f"data"
+        if not Path.exists():
+            path.mkdir(parents=True)
+        
+        path = f"data/html"
+        if not Path.exists():
+            path.mkdir(parents=True)
+        
+        path = f"data/parquet"
+        if not Path.exists():
+            path.mkdir(parents=True)
+        
+        path = f"data/parquet/bronze"
+        if not Path.exists():
+            path.mkdir(parents=True)
+        
+        path = f"data/parquet/silver"
+        if not Path.exists():
+            path.mkdir(parents=True)
+
+        path = f"data/parquet/gold"
+        if not Path.exists():
+            path.mkdir(parents=True)
 
         #try: #inicia tratamento de erro
         if nome_tipo in("Producao", "Comercializacao"):
