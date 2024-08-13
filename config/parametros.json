@@ -1,3 +1,6 @@
 {
     "ano_inicio_scraping":"1970"
+    , "CHAVE_SECRETA": "3552af3ed9096acf5d5f7d75bae0a7a40d92abb9451790836f24ecdf2a978903"
+    , "ALGORITHM":"HS256"
+    , "ACCESS_TOKEN_EXPIRE_MINUTES" : "30"
 }

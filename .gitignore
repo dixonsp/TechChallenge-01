@@ -1,6 +1,35 @@
-.venvMAC/
-venvWIN/
-OLD/
-*__pycache__
-LAB/
-data/*
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+aaa__pycache__/
+
+# Diretórios e arquivos específicos a serem ignorados
+config/
+*.db
+*.sqlite3
+
+# Ambiente virtual
+venv/
+ENV/
+env/
+.venv/
+.ENV/
+
+# Arquivos e diretórios gerados por IDEs
+.idea/
+.vscode/
+
+# Arquivos de log
+*.log
+
+# Arquivos de configuração do sistema
+.DS_Store
+*.swp
+
+# Arquivos de compilação
+*.egg
+*.egg-info/
+dist/
+build/
