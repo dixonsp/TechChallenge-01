@@ -2,6 +2,9 @@
 
 Este projeto foi desenvolvido como parte de uma entrega acadêmica, voltado ao setor de vinhos, para a empresa Embrapa. O sistema é capaz de realizar autenticação via JWT e executar web scraping de dados específicos sobre uvas, vinhos e derivados, contribuindo para análises detalhadas e relatórios estratégicos. Além disso, inclui um dashboard interativo para análise exploratória dos dados.
 
+# Video explicativo - Youtube
+https://www.youtube.com/watch?v=5w5TgxGag4E
+
 ## Integrantes do Grupo 2
 
 - **Adilson Hideki**
